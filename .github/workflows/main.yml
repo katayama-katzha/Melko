@@ -1,0 +1,22 @@
+name: Deploy via Github Actions to Production
+on:
+  push:
+    branches:
+      - master
+      
+
+jobs:
+  FTP-Deploy-Action:
+    name: FTP-Deploy-Action   # ジョブの名前
+    runs-on: ubuntu-latest    # 仮想環境の指定
+
+    steps:
+      - uses: actions/checkout@v2   # チェックアウトアクション（https://github.com/actions/checkout）
+      - name: FTP-Deploy-Action
+        uses: SamKirkland/FTP-Deploy-Action@4.3.2     # FTPアップロードアクション（https://github.com/SamKirkland/FTP-Deploy-Action）
+        with:
+            server: ${{ secrets.FTP_SERVER }}         # FTPのサーバーアドレス
+            username: ${{ secrets.FTP_USERNAME }}     # FTPのユーザー名名
+            password: ${{ secrets.FTP_PASSWORD }}     # FTPのパスワード
+            server-dir: ${{ secrets.FTP_SERVER_DIR }}  # アップロード先のリモートパス
+            exclude: "[**/.**/**, .git, .gitignore,  **/.git/**, **/node_modules/**, **/vendor/**, .editorconfig, README.md, .phpcs.xml.dist, **.json, **.lock, postcss.config.js, **/src/**]"
