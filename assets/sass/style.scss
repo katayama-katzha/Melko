@@ -192,9 +192,7 @@ time{
 	font-family: $ff-time;
 }
 
-body{
-	transform: translate3d(0,0,0);
-}
+
 
 header{
 	position: fixed;
@@ -302,6 +300,7 @@ header{
 
 main{
 	overflow: hidden;
+	transform: translate3d(0,0,0);
 }
 
 h2{

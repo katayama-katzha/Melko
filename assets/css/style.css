@@ -164,10 +164,6 @@ time {
   font-family: "Abril Fatface";
 }
 
-body {
-  transform: translate3d(0, 0, 0);
-}
-
 header {
   position: fixed;
   z-index: 10;
@@ -263,6 +259,7 @@ header .header-inner .right .burger.active .sp2 {
 
 main {
   overflow: hidden;
+  transform: translate3d(0, 0, 0);
 }
 
 h2 {
