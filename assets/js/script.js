@@ -2,21 +2,56 @@
 
 
 jQuery(function($){
-  $(window).scroll(function() {
-    var fvTop = $('.fv').offset().top; // fvの初期位置を取得
-    var fvHeight = $('.fv').outerHeight(); // fvの全体的な高さを取得
-    var scrollPos = $(this).scrollTop(); // スクロールの位置を取得
 
-    // fvが完全に画面外に出た場合
-    if(scrollPos > fvTop + fvHeight) {
-        $('header').addClass('fixed');
-        $('.bottom-cta').addClass('fixed');
-    } else {
-        // fvが画面内に戻った場合
-        $('header').removeClass('fixed');
-        $('.bottom-cta').removeClass('fixed');
+  $(document).ready(function() {
+    setTimeout(function() {
+        $('.loading-circle').addClass('animated');
+        $('.loading').addClass('animated');
+    }, 1000);
+  });
+
+  $(document).ready(function() {
+    setTimeout(function() {
+        $('.fv-img-wrapper').addClass('animated');
+    }, 1500);
+  });
+
+  $(document).ready(function() {
+    var scale = 0.9; // 初期スケール
+    var $aboutImg = $('.about-img');
+
+    function updateScale() {
+          var windowHeight = $(window).height();
+          var scrollPos = $(window).scrollTop();
+          var imgPos = $aboutImg.offset().top;
+          var imgHeight = $aboutImg.height();
+
+          // 画像が画面に入ったか判定
+          if (scrollPos + windowHeight > imgPos && scrollPos < imgPos + imgHeight) {
+              var pixelsScrolled = scrollPos + windowHeight - imgPos;
+              var scaleIncrease = Math.floor(pixelsScrolled / 1) * 0.00008;
+              var newScale = Math.max(scale, scale + scaleIncrease);
+              newScale = Math.min(newScale, 1.0); // スケールが1.0を超えないように制限
+              $aboutImg.css('transform', 'scale(' + newScale + ')');
+          }
     }
-});
+
+    $(window).scroll(updateScale);
+  });
+
+  $(document).ready(function() {
+      $('.parent-li.li-active').find('.child-ul').show();
+      $('.parent-li').hover(function() {
+          
+          $(this).addClass('li-active');
+          $('.parent-li').not(this).removeClass('li-active');
+          $(this).find('.child-ul').slideDown();
+          $('.parent-li').not(this).removeClass('li-active').find('.child-ul').slideUp();
+          var imgId = '#' + $(this).attr('id') + '-img';
+          $(imgId).addClass('img-active');
+          $('.right-img').not(imgId).removeClass('img-active');
+      });
+  });
 
   
   $( function() {
@@ -54,117 +89,39 @@ jQuery(function($){
 
   });
 
-  // 当月の最終日の日付を取得
-  var currentDate = new Date();
-  var currentYear = currentDate.getFullYear();
-  var currentMonth = currentDate.getMonth();
-  var lastDay = new Date(currentYear, currentMonth + 1, 0).getDate();
-
-  // 日付を表示形式に整形
-  var formattedDate = currentYear + "年" + (currentMonth + 1) + "月" + lastDay + "日";
-
-  // id="date"要素に日付を設定
-  $("#date").text(formattedDate);
-  $("#date2").text(formattedDate);
-
-
-//   $(document).ready(function() {
-//     var $slider = $("#slider");
-//     var speed = 50; // ここにスライド速度をピクセル/秒単位で設定します。
-
-//     function slide() {
-//         var $firstSlide = $slider.find(".slide:first");
-//         var width = $firstSlide.outerWidth(true); // マージンを含む幅を取得します。
-
-//         // アニメーションの時間を計算します（ミリ秒単位）
-//         var time = width / speed * 1000;
-
-//         $firstSlide.animate({ marginLeft: -width }, time, "linear", function() {
-//             // アニメーションが完了したスライドを削除します。
-//             $(this).remove();
-
-//             // 次のスライドのアニメーションを開始します。
-//             slide();
-//         });
-
-//         // アニメーションが開始された直後に次のスライドのクローンを作成し、スライダーの末尾に追加します。
-//         $slider.find(".slide").eq(1).clone().appendTo($slider);
-//     }
-
-//     // 初回のアニメーションを開始します。
-//     slide();
-// });
-
-$(document).ready(function() {
-  $(window).scroll(function() {
-    var footer = $('footer');
-    var footerOffset = footer.offset().top;
-    var windowHeight = $(window).height();
-    var scrollPosition = $(window).scrollTop();
-
-    if (scrollPosition > footerOffset - windowHeight) {
-      $('.bottom-cta').removeClass('fixed');
-    }
+  const swiper1 = new Swiper(".swiper1", {
+    loop: true, // ループ
+    speed: 1500, // 少しゆっくり(デフォルトは300)
+    slidesPerView: 2, // 一度に表示する枚数
+    spaceBetween: 0, // スライド間の距離
+    centeredSlides: true, // アクティブなスライドを中央にする
+    autoplay: {
+      // 自動再生
+      delay: 6000, // 1秒後に次のスライド
+      disableOnInteraction: false, // 矢印をクリックしても自動再生を止めない
+    },
+    // ページネーション
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    // 前後の矢印
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
   });
-});
 
-const theWrapper = document.getElementById('wrapper1');
-const theContainer = document.getElementById('container1');
-new Swiper( '.swiper-container1', {
-  slidesPerView: 0.3,
-  spaceBetween: 0,
-  loop: true,
-  speed: 25000,
-  clickable:false,
-  preventLinks:false,
-  allowTouchMove: false,
-  autoplay: {
-    delay: 0,
-  },
-
-  on: {
-    slideChangeTransitionStart: function(){
-      theWrapper.style.transitionTimingFunction = 'linear';
-      theContainer.style.transitionTimingFunction = 'linear';
+  const swiper2 = new Swiper(".swiper2", {
+    loop: true, // ループ有効
+    slidesPerView: 1.5, // 一度に表示する枚数
+    speed: 12000, // ループの時間
+    allowTouchMove: false, // スワイプ無効
+    autoplay: {
+      delay: 0, // 途切れなくループ
     },
+  });
 
-  },
-
-  breakpoints: {
-    
-    768: {
-      slidesPerView: 0.8,
-    },
-    1580: {
-      slidesPerView: 1.4,
-    },
-  }
-
-
-});
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-  
-  
-  
-
-  
-  
 
 
 
