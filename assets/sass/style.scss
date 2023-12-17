@@ -2,13 +2,11 @@
 
 // 色
 $c-main:#273A48;
-$red1:#e83434;
-$red2:#ac2323;
+$gray:#bfbfbf;
 
 $ff-main:"minion-pro";
-$sans:"Noto Sans JP";
-$poppins:"Poppins";
-$din:"din-2014";
+$ff-txt:"Athelas";
+$ff-time:"Abril Fatface";
 
 // ブレークポイント
 $breakpoints: (
@@ -18,9 +16,8 @@ $breakpoints: (
 	"tab-up": "(min-width: 1025px)",
 	"note-down": "(max-width: 1279px)",
 	"note-up": "(min-width: 1281px)",
-	"wide-down" : "(max-width: 1366px)",
-	"wide-up" : "(min-width: 1367px)"
-
+	"wide-down" : "(max-width: 1440px)",
+	"wide-up" : "(min-width: 1441px)"
 );
 
 // メディアクエリー
@@ -30,9 +27,9 @@ $breakpoints: (
 	}
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;200;300;400;500;600;700;800;900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
 
-$baseWidth : 1366;
+$baseWidth : 1440;
  	@function vw($pixelsVw) {
     @return $pixelsVw / $baseWidth * 100vw;
 }
@@ -182,4 +179,8 @@ img.sp-hide{
 	@include mq('sp-down'){
 		display: none;
 	}
+}
+
+time{
+	font-family: $ff-time;
 }
