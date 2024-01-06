@@ -566,6 +566,13 @@ p{
 							&:last-child{
 								margin-bottom: 0;
 							}
+							&.no-indent{
+								padding-left: 0;
+								max-width: vw(740);
+								&::before{
+									display: none;
+								}
+							}
 							@include mq('sp-down'){
 							  padding-left: vw2(12);
 							  font-size: vw2(12);
@@ -574,6 +581,9 @@ p{
 								width: vw2(8);
 								height: vw2(8);
 								top: vw2(5);
+							  }
+							  &.no-indent{
+								max-width: unset;
 							  }
 							}
 						}
@@ -615,14 +625,10 @@ p{
 						animation: fadeInUp 0.3s ease-out forwards;
 					}
 				}
-				#num2-img{
-					@include mq('sp-down'){
-					  margin-top: vw2(65);
-					}
-				}
+
 				#num3-img{
 					@include mq('sp-down'){
-					  margin-top: vw2(150);
+					  margin-top: vw2(85);
 					}
 				}
 			}
