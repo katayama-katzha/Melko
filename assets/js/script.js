@@ -19,6 +19,11 @@ jQuery(function($){
   $(document).ready(function() {
     var scale = 0.9; // 初期スケール
     var $aboutImg = $('.about-img');
+    if (window.matchMedia('(max-width: 767px)').matches){
+      var scale = 0.95;
+    }else{
+      var scale = 0.9;
+    }
 
     function updateScale() {
           var windowHeight = $(window).height();
@@ -40,9 +45,7 @@ jQuery(function($){
   });
 
   $(document).ready(function() {
-      $('.parent-li.li-active').find('.child-ul').show();
-      $('.parent-li').hover(function() {
-          
+      function handleHover() {
           $(this).addClass('li-active');
           $('.parent-li').not(this).removeClass('li-active');
           $(this).find('.child-ul').slideDown();
@@ -50,7 +53,21 @@ jQuery(function($){
           var imgId = '#' + $(this).attr('id') + '-img';
           $(imgId).addClass('img-active');
           $('.right-img').not(imgId).removeClass('img-active');
-      });
+      }
+
+      // デフォルトのホバーイベント
+      $('.parent-li').hover(handleHover);
+
+      // ウィンドウのリサイズイベントを監視
+      $(window).resize(function() {
+          // 767px以下の時、ホバーイベントを解除し、タップイベントを適用
+          if ($(window).width() <= 767) {
+              $('.parent-li').off('mouseenter mouseleave').on('click', handleHover);
+          } else {
+              // 768px以上の時、元のホバーイベントに戻す
+              $('.parent-li').off('click').hover(handleHover);
+          }
+      }).resize(); // 初期ロード時にも実行
   });
 
   
