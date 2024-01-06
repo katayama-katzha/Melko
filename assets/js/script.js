@@ -138,8 +138,64 @@ jQuery(function($){
       delay: 0, // 途切れなくループ
     },
   });
+  const swiper3 = new Swiper(".swiper3", {
+    slidesPerView: 1, // 一度に表示する枚数
+    speed: 1000, // ループの時間
+    effect: 'fade',
+    allowTouchMove: false, // スワイプ無効
+    navigation: {
+      nextEl: ".next-wrap",
+    },
+    on: {
+      init: function () {
+        // Swiper初期化時のカスタムページネーションのセットアップ
+        setupCustomPagination();
+      },
+      slideChange: function () {
+        // Swiperスライドが変更されたときのカスタムページネーションの更新
+        updateCustomPagination(this.activeIndex);
+      }
+    }
+  });
 
+  function setupCustomPagination() {
+    // すべてのページネーションリンクにイベントリスナーを追加
+    document.querySelectorAll('.pagination-origin .gotomovie').forEach(function (element, index) {
+      element.addEventListener('click', function () {
+        swiper3.slideTo(index);
+      });
+    });
+  }
+  
+  function updateCustomPagination(activeIndex) {
+    // アクティブなページネーションリンクの更新
+    document.querySelectorAll('.pagination-origin .gotomovie').forEach(function (element, index) {
+      if (index === activeIndex) {
+        element.classList.add('active');
+      } else {
+        element.classList.remove('active');
+      }
+    });
+  }
+  
+  // 初期セットアップを呼び出し
+  setupCustomPagination();
 
-
+  $(document).ready(function(){
+      $('.movie-btn').click(function(){
+          var index = $(this).data('index'); // ボタンにdata-index属性を設定
+          $('.vr').removeClass('active'); // すべてのvrクラスからactiveを削除
+          $('.vr' + index).addClass('active'); // 対応するvrクラスにactiveを追加
+          $('video').each(function() {
+              this.pause(); // 他のすべてのビデオを停止
+              this.removeAttribute('controls'); // 他のすべてのビデオからコントロールを削除
+          });
+          var video = $('#video' + index);
+          video.attr('controls','');
+          video.get(0).play();
+          $('.movie-btn').removeClass('active'); // すべてのボタンからactiveを削除
+          $(this).addClass('active'); // このボタンにactiveを追加
+      });  
+  });
 
 });
