@@ -146,6 +146,9 @@ jQuery(function($){
     navigation: {
       nextEl: ".next-wrap",
     },
+    fadeEffect: {
+      crossFade: true
+    },
     on: {
       init: function () {
         // Swiper初期化時のカスタムページネーションのセットアップ
