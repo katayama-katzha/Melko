@@ -19,6 +19,10 @@ jQuery(function($){
   $(document).ready(function() {
     var scale = 0.9; // 初期スケール
     var $aboutImg = $('.about-img');
+    // .about-img 要素が存在するかチェック
+    if ($aboutImg.length === 0) {
+      return; // .about-img 要素がない場合、以降のコードは実行しない
+    }
     if (window.matchMedia('(max-width: 767px)').matches){
       var scale = 0.95;
     }else{
