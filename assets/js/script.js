@@ -165,6 +165,39 @@ jQuery(function($){
     }
   });
 
+  // サムネイル
+  const swiperThumbnail = new Swiper(".swiper-thumbnail", {
+    slidesPerView: 3, // サムネイルの枚数
+    spaceBetween: 20,
+    threshold:10,
+  });
+  // スライダー
+  const salonSwiper = new Swiper(".salonSwiper", {
+    loop: true,
+    spaceBetween: 20,
+    threshold:10,
+    thumbs: {
+      swiper: swiperThumbnail,
+    },
+  });
+
+  const staffSwiper = new Swiper(".staffSwiper", {
+    slidesPerView: 2, // 一度に表示する枚数
+    spaceBetween: 10, // スライド間の距離
+    threshold:10,
+    // 前後の矢印
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    breakpoints: {
+      768: {
+        slidesPerView: 4,
+        spaceBetween:25,
+      }
+    },
+  });
+
   function setupCustomPagination() {
     // すべてのページネーションリンクにイベントリスナーを追加
     document.querySelectorAll('.pagination-origin .gotomovie').forEach(function (element, index) {
@@ -205,4 +238,44 @@ jQuery(function($){
       });  
   });
 
+  $(document).ready(function(){
+
+    // Apply click event to tabs
+    $('.tab').click(function() {
+      $('.is-active').removeClass('is-active');
+      $(this).addClass('is-active');
+      $('.is-show').removeClass('is-show');
+      const index = $('.tab').index(this);
+      $('.panel').eq(index).addClass('is-show');
+    });
+  
+  });
+
+  $(document).ready(function() {
+      let modalArea = $('#modal_area');
+      let modalAreaModal = $('#modal_area .modal');
+
+
+      $('.swiper-slide.modal-open-slide').on('click', function(e) {
+          e.preventDefault(); // デフォルトのリンク動作を防止
+          let index = $(this).index() + 1; // クリックされた要素のインデックスを取得
+          modalOpen(index); // 対応するモーダルを開く
+      });
+
+      function modalOpen(index) {
+          modalArea.fadeIn();
+          $('.modal-' + index).fadeIn();
+      }
+
+
+      modalArea.on('click', function(e) {
+          if (!$(e.target).closest('.modal').length) {
+              modalArea.fadeOut();
+              modalAreaModal.fadeOut();
+          }
+      });
+  });
+  
+
 });
+
