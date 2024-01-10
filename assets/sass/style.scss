@@ -2132,3 +2132,12 @@ footer{
 		}
 	}
 }
+
+.tel{
+	pointer-events: none;
+	text-decoration: none;
+	>*{
+		pointer-events: none;
+		text-decoration: none;
+	}
+}

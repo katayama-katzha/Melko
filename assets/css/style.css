@@ -2285,4 +2285,13 @@ footer .bottom ul li {
   }
 }
 
+.tel {
+  pointer-events: none;
+  text-decoration: none;
+}
+.tel > * {
+  pointer-events: none;
+  text-decoration: none;
+}
+
 /*# sourceMappingURL=style.css.map */
