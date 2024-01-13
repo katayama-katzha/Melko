@@ -2601,3 +2601,295 @@ footer{
 		}
 	}
 }
+
+.archive-fv{
+	padding-top: vw(196);
+	padding-bottom: unset;
+	@include mq('sp-down'){
+		padding-top: vw2(80);
+		padding-left: vw2(20);
+		padding-right: vw2(20);
+	}
+	.section-inner{
+		display: block;
+		h1{
+			text-align: center;
+			font-size: vw(130);
+			padding-bottom: vw(30);
+			@include mq('sp-down'){
+				font-size: vw2(50);
+				padding-bottom: vw2(20);
+			}
+		}
+		p{
+			text-align: center;
+			line-height: 1.6em;
+			text-align: center;
+			font-size: vw(15);
+			padding-bottom: vw(30);
+			@include mq('sp-down'){
+			  font-size: vw2(14);
+			  padding-bottom: vw2(15);
+			}
+		}
+		ul{
+			display: flex;
+			justify-content: center;
+			padding-bottom: vw(25);
+			@include mq('sp-down'){
+			  flex-wrap: wrap;
+			  padding-bottom: vw2(20);
+			}
+			li{
+				margin-left: vw(5);
+				margin-right: vw(5);
+				@include mq('sp-down'){
+				  margin-left: vw2(5);
+				  margin-right: vw2(5);
+				  margin-bottom: vw2(10);
+				}
+				a{
+					display: block;
+					text-align: center;
+					min-width: vw(250);
+					font-size: vw(15);
+					line-height: 2em;
+					border: 1px solid $c-main;
+					border-radius: 99px;
+					&.current{
+						background-color: $c-main;
+						span{
+							color: white;
+						}
+					}
+					@include mq('sp-down'){
+					  min-width: vw2(150);
+					  font-size: vw2(11);
+					  white-space: nowrap;
+					  
+					}
+					top: 0;
+					position: relative;
+					transition: all .3s;
+					@include mq('sp-up'){
+						&:hover{
+							top: vw(-3);
+							box-shadow: 0px 3px 3px lightgray;
+						}
+	
+					}
+				}
+			}
+		}
+	}
+
+}
+
+.contact-content{
+	padding-bottom: vw(170);
+	padding-left: vw(20);
+	padding-right: vw(20);
+	@include mq('sp-down'){
+	  padding-left: vw2(20);
+	  padding-right: vw2(20);
+	  padding-bottom: vw2(100);
+	}
+	.section-inner{
+		max-width: vw(940);
+		margin: auto;
+		@include mq('sp-down'){
+		  max-width: unset;
+		}
+		.bg-gray{
+			padding: vw(50) vw(80);
+			background-color: #E6E6E6;
+			@include mq('sp-down'){
+			  padding: vw2(40) vw2(10);
+			}
+			.red{
+				color: #F92B50;
+				font-size: vw(15);
+				letter-spacing: 0.02em;
+				padding-bottom: vw(20);
+				@include mq('sp-down'){
+				  font-size: vw2(14);
+				  padding-bottom: vw2(10);
+				}
+			}
+			table{
+				width: 100%;
+				border-collapse: separate;
+				border-spacing: 0 vw(10);
+				@include mq('sp-down'){
+				  border-spacing: 0 vw2(10);
+				}
+				tr{
+					@include mq('sp-down'){
+					  display: flex;
+					  flex-direction: column;
+					}
+					th{
+						width: vw(180);
+						font-size: vw(15);
+						letter-spacing: 0.02em;
+						font-family: $ff-txt;
+						vertical-align: baseline;
+						padding-top: vw(14);
+						span{
+							padding-left: vw(2);
+						}
+						@include mq('sp-down'){
+						  width: 100%;
+						  font-size: vw2(14);
+						  padding-top: vw2(4);
+						  padding-right: vw2(10);
+						  line-height: 1.3em;
+						  margin-bottom: vw2(5);
+						  span{
+							padding-left: vw2(1);
+						  }
+						}
+					}
+					td{
+						@include mq('sp-down'){
+						  margin-bottom: vw2(10);
+						}
+						input{
+							width: 100%;
+							height: vw(40);
+							border: none;
+							padding-left: vw(10);
+							font-family: $ff-txt;
+							font-size: vw(15);
+							@include mq('sp-down'){
+							  height: vw2(30);
+							  padding-left: vw2(10);
+							  font-size: vw2(14);
+							}
+						}
+						textarea{
+							width: 100%;
+							height: vw(250);
+							border: none;
+							padding: vw(10);
+							line-height: 1.4em;
+							font-family: $ff-txt;
+							font-size: vw(15);
+							@include mq('sp-down'){
+								height: vw2(150);
+								padding: vw2(10);
+								font-size: vw2(14);
+							}
+						}
+					}
+				}
+			}
+			.check-wrapper{
+				margin-top: vw(20);
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				@include mq('sp-down'){
+				  margin-top: vw2(10);
+				}
+				label{
+					font-size: vw(15);
+					letter-spacing: 0.02em;
+					font-family: $ff-txt;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					@include mq('sp-down'){
+					  font-size: vw2(13);
+					}
+				}
+				input[type="checkbox"] {
+					position: relative;
+					width: vw(10);
+					height: vw(10);
+					margin: 0;
+					border: 1px solid #000;
+					vertical-align: vw(-5);
+					-webkit-appearance: none;
+					   -moz-appearance: none;
+							appearance: none;
+					margin-right: vw(5);
+					border-radius: 0px;
+					@include mq('sp-down'){
+					  width: vw2(10);
+					  height: vw2(10);
+					  vertical-align: vw2(-5);
+					  margin-right: vw2(5);
+					}
+				  }
+				  
+				  input[type="checkbox"]:checked:before {
+					position: absolute;
+					top: vw(-0.5);
+					left: vw(3);
+					transform: rotate(50deg);
+					width: vw(4);
+					height: vw(8);
+					border-right: vw(1) solid $c-main;
+					border-bottom: vw(1) solid $c-main;
+					content: '';
+					@include mq('sp-down'){
+					  top: vw2(-0.5);
+					  left: vw2(3);
+					  width: vw2(4);
+					  height: vw2(8);
+					  border-bottom-width: 1px;
+					  border-right-width:1px;
+					}
+				  }
+			}
+		}
+		.submit-wrapper{
+			display: flex;
+			justify-content: center;
+			padding-top: vw(40);
+			&.submit-wrapper2{
+				padding-top: 0;
+			}
+			@include mq('sp-down'){
+			  padding-top: vw2(20);
+			  &.submit-wrapper2{
+				padding-top: vw2(20);
+			  }
+			}
+			.btn{
+				width: vw(350);
+				text-align: center;
+				display: block;
+				line-height: vw(60);
+				background-color: $c-main;
+				color: white;
+				font-size: vw(25);
+				font-family: $ff-txt;
+				border-radius: 99px;
+				position: relative;
+				top: 0;
+				transition: all .3s;
+				cursor: pointer;
+				@include mq('sp-up'){
+					&.btn2{
+						font-size: vw(17);
+					}
+					&:hover{
+						top: vw(-3);
+						box-shadow: 0px 3px 3px lightgray;
+					}
+
+				}
+				@include mq('sp-down'){
+				  width: vw2(250);
+				  line-height: vw2(50);
+				  font-size: vw2(20);
+				  &.btn2{
+					font-size: vw2(16);
+				  }
+				}
+			}
+		}
+	}
+}
