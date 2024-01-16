@@ -98,13 +98,13 @@ jQuery(function($){
   $( function() {
     $( '.burger' ).on( 'click', function(e){
       $(this).toggleClass('active');
-      $('.right').toggleClass('active');
+      $('.header-ul').toggleClass('active');
       e.preventDefault();
     });
 
-    $( '.right a' ).on( 'click', function(){
+    $( '.header-ul a' ).on( 'click', function(){
       $('.burger').removeClass('active');
-      $('.right').removeClass('active');
+      $('.header-ul').removeClass('active');
 
     });
 
